@@ -9,3 +9,7 @@ composer.lock
 # Docker
 .env
 **/node_modules
+
+# IDEs
+.vscode/
+.idea/
