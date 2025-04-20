@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www
     volumes:
-      - ./:/var/www
+      - ./api:/var/www
     depends_on:
       - db
     networks:
@@ -34,11 +34,12 @@ services:
     image: postgres:latest
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${DB_USERNAME:-user}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
-      POSTGRES_DB: ${DB_DATABASE:-meu_banco}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-253610}
+      POSTGRES_DB: ${DB_NAME:-bancoCRUD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5433:5432"
     networks:
